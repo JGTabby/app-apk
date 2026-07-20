@@ -11,23 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 將 checkout 更新到 v4
       - name: Checkout the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      # 將 setup-java 更新到 v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 直接使用系統內建的 gradle 來編譯，不依賴 gradlew
       - name: Build with Gradle
         run: |
           cd ClipBatteryLink
           gradle assembleDebug
 
+      # 解決報錯的關鍵：將 upload-artifact 更新到 v4
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: ClipBatteryLink/app/build/outputs/apk/debug/app-debug.apk
