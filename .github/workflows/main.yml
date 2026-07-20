@@ -20,19 +20,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: |
-          cd ClipBatteryLink
-          chmod +x gradlew
-
+      # 直接使用系統內建的 gradle 來編譯，不依賴 gradlew
       - name: Build with Gradle
         run: |
           cd ClipBatteryLink
-          ./gradlew assembleDebug
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: app-debug
           path: ClipBatteryLink/app/build/outputs/apk/debug/app-debug.apk
-        
