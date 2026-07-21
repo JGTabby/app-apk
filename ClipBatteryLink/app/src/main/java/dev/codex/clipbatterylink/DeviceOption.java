@@ -11,7 +11,7 @@ final class DeviceOption {
     DeviceOption(BluetoothDevice device) {
         this.device = device;
         String name = device.getName();
-        this.label = (name == null || name.trim().isEmpty() ? "Unnamed device" : name)
+        this.label = (name == null || name.trim().isEmpty() ? "未命名裝置" : name)
                 + " - " + device.getAddress();
     }
 
